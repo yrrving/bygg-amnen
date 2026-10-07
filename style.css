@@ -1,0 +1,221 @@
+:root {
+  --bg: #bfe3ef;
+  --kort: #ffffff;
+  --text: #17202b;
+  --dampad: #4a5866;
+  --accent: #23749f;
+  --spelare1: #1f6fd1;
+  --spelare2: #c2410c;
+  --gul: #ffcf3a;
+  --radie: 18px;
+  --skugga: 0 10px 30px rgba(20, 40, 60, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+#duk {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0.05em 0.4em;
+  border: 1px solid #9aa7b5;
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  background: #f4f6f8;
+  font: 600 0.85em/1.4 system-ui, sans-serif;
+  text-align: center;
+  color: var(--text);
+}
+
+/* ---------- Beställningen */
+
+.bestallning {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(600px, calc(100vw - 32px));
+  padding: 10px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "visa nr" "visa vem" "visa tips";
+  column-gap: 18px;
+  align-items: center;
+  background: var(--kort);
+  border-radius: var(--radie);
+  box-shadow: var(--skugga);
+}
+.bestallning p { margin: 0; }
+.b-nr { grid-area: nr; }
+.b-vem { grid-area: vem; }
+.b-tips { grid-area: tips; }
+.b-visa { grid-area: visa; min-width: 150px; }
+.b-nr { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dampad); }
+.b-vem { margin-top: 2px !important; font-size: 0.95rem; }
+.b-visa { margin: 0; min-height: 64px; display: flex; align-items: center; justify-content: center; }
+.b-visa .formel { font-size: 2.6rem; font-weight: 800; letter-spacing: 0.02em; }
+.b-visa .namn { font-size: 2.1rem; font-weight: 800; }
+.b-visa svg { width: 150px; height: 96px; }
+.b-tips { font-size: 0.85rem; color: var(--dampad); }
+.b-tips:empty { display: none; }
+
+.bestallning.lyckad { outline: 4px solid #2f9e5b; }
+
+/* ---------- Handbok-knapp */
+
+.handbok-knapp {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--kort);
+  box-shadow: var(--skugga);
+  font: 600 1rem system-ui, sans-serif;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* ---------- Prompts per spelare */
+
+.prompt {
+  position: fixed;
+  bottom: 16px;
+  margin: 0;
+  max-width: 44vw;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--kort);
+  box-shadow: var(--skugga);
+  font-weight: 600;
+  border-left: 8px solid;
+}
+.prompt:empty { display: none; }
+.prompt-1 { left: 16px; border-color: var(--spelare1); }
+.prompt-2 { right: 16px; border-color: var(--spelare2); }
+
+/* ---------- Meddelanden */
+
+.meddelanden {
+  position: fixed;
+  left: 50%;
+  bottom: 72px;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 32px));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.meddelanden li {
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(23, 32, 43, 0.92);
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  animation: in 0.25s ease-out;
+}
+.meddelanden li.lyckad { background: #1f7a45; }
+.meddelanden li.ut { opacity: 0; transition: opacity 0.6s; }
+
+@keyframes in { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- Paneler */
+
+.panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 26px 30px;
+  background: var(--kort);
+  border-radius: var(--radie);
+  box-shadow: 0 20px 60px rgba(20, 40, 60, 0.3);
+}
+.panel[hidden], .bestallning[hidden], .handbok-knapp[hidden] { display: none; }
+.panel h1, .panel h2 { margin: 0 0 8px; line-height: 1.15; }
+.panel h1 { font-size: 2rem; }
+.eyebrow { margin: 0 0 4px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dampad); }
+.lead { font-size: 1.1rem; }
+.not { font-size: 0.85rem; color: var(--dampad); margin-bottom: 0; }
+
+.kontroller { width: 100%; border-collapse: collapse; margin: 8px 0; }
+.kontroller caption { text-align: left; font-weight: 700; margin-bottom: 4px; }
+.kontroller th, .kontroller td { padding: 6px 8px; border-bottom: 1px solid #e3e8ee; text-align: left; }
+.kontroller thead th { font-size: 0.85rem; color: var(--dampad); }
+
+.nr {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85em;
+}
+.nr-1 { background: var(--spelare1); }
+.nr-2 { background: var(--spelare2); }
+
+.btn {
+  margin-top: 8px;
+  padding: 12px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: 700 1.1rem system-ui, sans-serif;
+  cursor: pointer;
+}
+.btn kbd { color: var(--text); }
+
+.handbok-lista dt { font-weight: 700; margin-top: 12px; }
+.handbok-lista dd { margin: 2px 0 0; }
+.atom {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.85em;
+  border: 2px solid #17202b;
+  vertical-align: middle;
+}
+.atom-h { background: #f2f2f2; color: #17202b; }
+.atom-o { background: #e0402a; color: #fff; }
+.atom-c { background: #3b3b3b; color: #fff; }
+
+.fragor li { margin: 8px 0; font-size: 1.05rem; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .meddelanden li { animation: none; }
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+    Inga nätverksanrop: three.js ligger i vendor/ och inga typsnitt eller
+    tjänster hämtas utifrån.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self';
+    img-src 'self' data: blob:;
+    connect-src 'self';
+    font-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'none';
+  ">
+  <title>Bygg ämnen tillsammans · prototyp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="duk" role="img" aria-label="Spelplanen: ett labb sett snett uppifrån. Till vänster en hylla som är periodiska systemet, i mitten en disk, till höger bindningsbänken och leveransen med en våg."></canvas>
+
+  <section class="bestallning" id="bestallning" aria-live="polite" hidden>
+    <p class="b-nr" id="bNr"></p>
+    <p class="b-vem" id="bVem"></p>
+    <div class="b-visa" id="bVisa"></div>
+    <p class="b-tips" id="bTips"></p>
+  </section>
+
+  <button class="handbok-knapp" id="handbokKnapp" type="button" hidden>Handbok <kbd>B</kbd></button>
+
+  <p class="prompt prompt-1" id="prompt1" aria-hidden="true"></p>
+  <p class="prompt prompt-2" id="prompt2" aria-hidden="true"></p>
+
+  <ul class="meddelanden" id="meddelanden" aria-live="polite"></ul>
+
+  <section class="panel" id="start" aria-labelledby="startRubrik">
+    <p class="eyebrow">Arbetsprototyp · arbetsnamn ej bestämt</p>
+    <h1 id="startRubrik">Bygg ämnen tillsammans</h1>
+    <p class="lead">
+      Hämta atomer på hyllan, bygg ihop dem på bänken och lämna dem på vågen.
+      Ingen tid och ingen stress. Ni gör det tillsammans.
+    </p>
+    <table class="kontroller">
+      <caption>Så styr ni</caption>
+      <thead>
+        <tr><th scope="col"></th><th scope="col">Gå</th><th scope="col">Använd</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row"><span class="nr nr-1">1</span> Spelare 1</th><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td><kbd>E</kbd></td></tr>
+        <tr><th scope="row"><span class="nr nr-2">2</span> Spelare 2</th><td>Piltangenterna</td><td><kbd>Enter</kbd></td></tr>
+        <tr><th scope="row">Handkontroll</th><td>Vänster spak</td><td><kbd>A</kbd></td></tr>
+      </tbody>
+    </table>
+    <p>Handboken öppnas med <kbd>B</kbd>.</p>
+    <button class="btn" id="startKnapp" type="button">Börja</button>
+    <p class="not">Tidig prototyp. All grafik är tillfällig.</p>
+  </section>
+
+  <section class="panel" id="handbok" aria-labelledby="handbokRubrik" hidden>
+    <h2 id="handbokRubrik">Labbets handbok</h2>
+    <dl class="handbok-lista">
+      <dt>Atomer har armar</dt>
+      <dd><span class="atom atom-h">H</span> Väte har 1 arm. <span class="atom atom-o">O</span> Syre har 2. <span class="atom atom-c">C</span> Kol har 4.</dd>
+      <dt>När är en molekyl klar?</dt>
+      <dd>När alla armar håller i en annan atom. Lediga armar är gula och vickar.</dd>
+      <dt>Räcker inte armarna?</dt>
+      <dd>Två lediga armar på atomer som redan sitter ihop kan knäppas ihop. Använd bänken med tomma händer. Då blir bindningen dubbel.</dd>
+      <dt>Formler</dt>
+      <dd>CH₄ betyder 1 kol och 4 väte. Siffran efter en bokstav säger hur många. Ingen siffra betyder en.</dd>
+      <dt>Namn</dt>
+      <dd>"Di" betyder två. "Oxid" betyder att syre är med.</dd>
+      <dt>Hyllan</dt>
+      <dd>Hyllan är periodiska systemet. Ämnen i samma kolumn har oftast lika många armar. Tomma rutor väntar på att upptäckas.</dd>
+      <dt>Ingenting försvinner</dt>
+      <dd>I återvinningen går atomerna tillbaka till hyllan.</dd>
+    </dl>
+    <button class="btn" id="stangHandbok" type="button">Stäng <kbd>B</kbd></button>
+  </section>
+
+  <section class="panel" id="klar" aria-labelledby="klarRubrik" hidden>
+    <p class="eyebrow">Alla tre beställningarna är klara</p>
+    <h2 id="klarRubrik">Bra jobbat, labbet!</h2>
+    <p class="lead">Prata om det här i laget. Det finns inget enda rätt sätt att säga det.</p>
+    <ol class="fragor">
+      <li>Varför behövde syret två väten, men kolet fyra?</li>
+      <li>Koldioxid stod bara som ett namn. Hur kom ni fram till vad den består av?</li>
+      <li>Vad gjorde ni när armarna inte räckte till för koldioxiden?</li>
+    </ol>
+    <button class="btn" id="igenKnapp" type="button">Spela igen</button>
+  </section>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+test-results/
+
+# Intern planering, bara lokalt
+IDE.md
+LOGG.md
