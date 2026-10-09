@@ -1,6 +1,6 @@
 # Bygg ämnen tillsammans (arbetsprototyp)
 
-Ett samarbetsspel för 2 spelare där man bygger molekyler av atomer i ett labb. Hyllan är det periodiska systemet. Det finns ingen tid och ingen stress.
+Ett samarbetsspel för 2 spelare där man bygger molekyler av atomer i ett labb. Hyllan är det periodiska systemet.
 
 **Prova direkt:** https://yrrving.github.io/bygg-amnen/
 
